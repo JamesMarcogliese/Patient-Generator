@@ -1,5 +1,3 @@
-package test;
-
 import ca.uhn.fhir.model.dstu2.resource.Patient;
 import ca.uhn.fhir.model.dstu2.valueset.AdministrativeGenderEnum;
 import core.model.Metadata;

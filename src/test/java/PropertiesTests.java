@@ -1,11 +1,7 @@
-package test;
-
-import core.resources.PropertiesService;
+import core.PropertiesService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,7 +25,7 @@ class PropertiesTests {
 
         String value = propertiesService.getPropertyValue("seedDataFile");
 
-        assertEquals("resources/seedData.xml", value);
+        assertEquals("xml/seedData.xml", value);
     }
 
     /*@Test

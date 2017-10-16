@@ -1,6 +1,6 @@
 package randomizer;
 
-import core.resources.PropertiesService;
+import core.PropertiesService;
 import core.model.common.Patient;
 import randomizer.common.GivenNameGenderPair;
 import randomizer.common.SeedData;
@@ -8,7 +8,6 @@ import randomizer.utilities.OHIPUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;

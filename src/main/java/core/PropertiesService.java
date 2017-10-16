@@ -1,4 +1,4 @@
-package core.resources;
+package core;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,7 +30,7 @@ public class PropertiesService {
         String value = "";
 
         try {
-            URL path = this.getClass().getResource("config.properties");
+            URL path = PropertiesService.class.getClassLoader().getResource("properties/config.properties");
             File file = new File(path.getFile());
             input = new FileInputStream(file);
 
@@ -50,7 +50,7 @@ public class PropertiesService {
      */
     public File getResourceFile(String filename){
 
-        URL path = this.getClass().getResource(filename);
+        URL path = PropertiesService.class.getClassLoader().getResource(filename);
         File file = new File(path.getFile()).getAbsoluteFile();
         return file;
     }

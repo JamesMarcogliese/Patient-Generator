@@ -1,9 +1,5 @@
-package test;
-
-import ca.uhn.fhir.model.dstu2.resource.Patient;
 import core.model.Metadata;
 import core.model.componentModel.*;
-import fhir.FhirUtility;
 import messaging.messageReceiver.GenerationService;
 import messaging.model.GenerationResponse;
 import org.junit.jupiter.api.AfterEach;
@@ -15,7 +11,9 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class MessagingTests {
     private Demographic options;
     private GenerationService service;
