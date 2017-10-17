@@ -117,8 +117,8 @@ class MessagingTests {
     @Test
     void testDateOfBirthRange(){
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setStart(LocalDateTime.of(1925, 01, 01, 00, 0));
-        dateOfBirthOptions.setEnd(LocalDateTime.of(1990, 12, 31, 00, 0));
+        dateOfBirthOptions.setStart(LocalDateTime.of(1925, 1, 1, 0, 0));
+        dateOfBirthOptions.setEnd(LocalDateTime.of(1990, 12, 31, 0, 0));
         options.setDateOfBirthOptions(dateOfBirthOptions);
 
         GenerationResponse result = service.generatePatients(options);
@@ -129,7 +129,7 @@ class MessagingTests {
     @Test
     void testDateOfBirthRangeNoEnd(){
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setStart(LocalDateTime.of(1925, 01, 01, 00, 0));
+        dateOfBirthOptions.setStart(LocalDateTime.of(1925, 1, 1, 0, 0));
         dateOfBirthOptions.setExact(LocalDateTime.now());
         options.setDateOfBirthOptions(dateOfBirthOptions);
 
@@ -141,7 +141,7 @@ class MessagingTests {
     @Test
     void testDateOfBirthRangeNoStart(){
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setEnd(LocalDateTime.of(1990, 12, 31, 00, 0));
+        dateOfBirthOptions.setEnd(LocalDateTime.of(1990, 12, 31, 0, 0));
         dateOfBirthOptions.setExact(LocalDateTime.now());
         options.setDateOfBirthOptions(dateOfBirthOptions);
 
@@ -153,8 +153,8 @@ class MessagingTests {
     @Test
     void testDateOfBirthRangeWithExact(){
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setStart(LocalDateTime.of(1925, 01, 01, 00, 0));
-        dateOfBirthOptions.setEnd(LocalDateTime.of(1990, 12, 31, 00, 0));
+        dateOfBirthOptions.setStart(LocalDateTime.of(1925, 1, 1, 0, 0));
+        dateOfBirthOptions.setEnd(LocalDateTime.of(1990, 12, 31, 0, 0));
         dateOfBirthOptions.setExact(LocalDateTime.now());
         options.setDateOfBirthOptions(dateOfBirthOptions);
 

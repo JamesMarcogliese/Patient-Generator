@@ -1,11 +1,18 @@
 package randomizer.utilities;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Represents a utility to check and generate Ontario health card numbers.
+ */
 public class OHIPUtil {
 
+    /**
+     * Generates heath card numbers.
+     * @param count The number of health card numbers to generate.
+     * @return An array of health card numbers.
+     */
     public ArrayList<String> generateHealthNumbers(int count) {
 
         ArrayList<String> list = new ArrayList<>(count);
@@ -16,12 +23,21 @@ public class OHIPUtil {
         return list;
     }
 
+    /**
+     * Generates a single health card number.
+     * @return A single health card numbers.
+     */
     public String generateHealthNumber() {
 
         String randomNumber = Integer.toString(ThreadLocalRandom.current().nextInt(100000000, 999999999));
         return randomNumber + getHealthNumberCheckDigit(randomNumber);
     }
 
+    /**
+     * Generates the checksum for a health card number.
+     * @param healthNumber Text representation of the health card number.
+     * @return The checksum digit for the health card number.
+     */
     private int getHealthNumberCheckDigit(String healthNumber) {
 
         int addedNumbers = 0;
@@ -47,6 +63,11 @@ public class OHIPUtil {
         return (10 - checkDigit) % 10;
     }
 
+    /**
+     * Validates that an Ontario health card number (HCN) is correctly formatted using a checksum algorithm.
+     * @param healthNumber Representing the health card number to validate.
+     * @return True if the number is valid, false otherwise.
+     */
     public Boolean validateHealthNumber(String healthNumber){
 
         int addedNumbers = 0;

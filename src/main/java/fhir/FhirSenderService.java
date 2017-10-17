@@ -7,9 +7,14 @@ import core.model.componentModel.Demographic;
 
 /**
  * Represents a FHIR sender service.
+ * @see core.IFhirSenderService
  */
 public class FhirSenderService implements IFhirSenderService {
 
+    /**
+     * Sends the specified options.
+     * @param options The options.
+     */
     @Override
     public void send(Demographic options) {
 
@@ -18,6 +23,10 @@ public class FhirSenderService implements IFhirSenderService {
         fhirUtility.sendFhirMessages(patient);
     }
 
+    /**
+     * Sends the specified patients.
+     * @param patients The patients.
+     */
     @Override
     public void send(Iterable<core.model.common.Patient> patients) {
 
@@ -35,6 +44,10 @@ public class FhirSenderService implements IFhirSenderService {
         }
     }
 
+    /**
+     * Sends the specified patient.
+     * @param patient The patient.
+     */
     @Override
     public void send(core.model.common.Patient patient) {
 

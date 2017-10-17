@@ -1,0 +1,15 @@
+core
+core.model
+core.model.common
+core.model.componentModel
+core.validation
+fhir
+fhir.configuration
+hl7v2
+messaging.messageReceiver
+messaging.model
+messaging.services
+messaging.validation
+randomizer
+randomizer.common
+randomizer.utilities

@@ -1,9 +1,7 @@
 package messaging.messageReceiver;
 
-import core.*;
 import core.model.common.Patient;
 import core.model.componentModel.Demographic;
-import core.validation.IResultDetail;
 import core.validation.ResultDetail;
 import core.validation.ResultDetailType;
 import fhir.FhirSenderService;
@@ -13,8 +11,10 @@ import messaging.validation.ValidationUtil;
 import randomizer.RandomizerService;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
+/**
+ * Provides operations to generate patients.
+ */
 public class GenerationService implements IGenerationService {
     private FhirSenderService fhirSenderService;
     //private HL7v2SenderService hl7v2SenderService;
@@ -22,6 +22,9 @@ public class GenerationService implements IGenerationService {
     //private PersistenceService persistenceService;
     private RandomizerService randomizerService;
 
+    /**
+     * Initializes a new instance of the GenerationService class.
+     */
     public GenerationService() {
         fhirSenderService = new FhirSenderService();
         //hl7v2SenderService = new HL7v2SenderService();
@@ -30,6 +33,11 @@ public class GenerationService implements IGenerationService {
         randomizerService = new RandomizerService();
     }
 
+    /**
+     * Generates patients using the provided options.
+     * @param options The options to use to generate patients.
+     * @return Returns a GenerationResponse.
+     */
     @Override
     public GenerationResponse generatePatients(Demographic options){
         GenerationResponse response = new GenerationResponse();
@@ -37,10 +45,8 @@ public class GenerationService implements IGenerationService {
         ValidationUtil validationUtil = new ValidationUtil();
         Iterable<ResultDetail> details = validationUtil.validateMessage(options);
 
-        for (Iterator<ResultDetail> i = details.iterator(); i.hasNext(); ){
-            ResultDetail currentResultDetail = i.next();
-
-            if(currentResultDetail.getType() == ResultDetailType.Error){
+        for (ResultDetail currentResultDetail : details) {
+            if (currentResultDetail.getType() == ResultDetailType.Error) {
                 response.setHasErrors(true);
                 response.addMessage(currentResultDetail.getMessage());
             }
@@ -69,6 +75,11 @@ public class GenerationService implements IGenerationService {
         return response;
     }
 
+    /**
+     * Generates patients using a randomized dataset.
+     * @param count The number of patients to generate.
+     * @return Returns a generation response.
+     */
     @Override
     public GenerationResponse generatePatients(int count){
         GenerationResponse response = new GenerationResponse();
@@ -79,11 +90,8 @@ public class GenerationService implements IGenerationService {
             patients.add(randomizerService.getRandomPatient());
         }
 
-        for (Iterator<Patient> i = patients.iterator(); i.hasNext();){
-            Patient currentPatient = i.next();
-
-            if (fhirSenderService != null)
-            {
+        for (Patient currentPatient : patients) {
+            if (fhirSenderService != null) {
                 fhirSenderService.send(currentPatient);
             }
            /* if (hl7v2SenderService != null)

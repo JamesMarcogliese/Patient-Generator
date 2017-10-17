@@ -100,7 +100,7 @@ public class Metadata {
     }
 
     /**
-     * Gets the use FHIR.
+     * When true, the application will generate patients using FHIR messages.
      * @return useFhir
      */
     public Boolean useFhir() {
@@ -108,7 +108,7 @@ public class Metadata {
     }
 
     /**
-     * Sets the use FHIR.
+     * Sets whether the application will generate patients using FHIR messages.
      * @param useFhir Use Fhir.
      */
     public void setUseFhir(Boolean useFhir) {
@@ -116,7 +116,7 @@ public class Metadata {
     }
 
     /**
-     * Gets the use HL7v2.
+     * When true, the application will generate patients using HL7v2 messages.
      * @return useHL7v2
      */
     public Boolean useHL7v2() {
@@ -124,7 +124,7 @@ public class Metadata {
     }
 
     /**
-     * Sets the use HL7v2.
+     * Sets whether the application will generate patients using HL7v2 messages.
      * @param useHL7v2 Use HL7v2.
      */
     public void setUseHL7v2(Boolean useHL7v2) {
@@ -132,7 +132,7 @@ public class Metadata {
     }
 
     /**
-     * Gets the use HL7v3.
+     * When true, the application will generate patients using HL7v3 messages.
      * @return useHL7v3
      */
     public Boolean useHL7v3() {
@@ -140,7 +140,7 @@ public class Metadata {
     }
 
     /**
-     * Gets the use HL7v3.
+     * Sets whether the application will generate patients using HL7v3 messages.
      * @param useHL7v3 HL7v2.
      */
     public void setUseHL7v3(Boolean useHL7v3) {

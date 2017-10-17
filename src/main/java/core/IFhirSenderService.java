@@ -16,7 +16,7 @@ public interface IFhirSenderService {
 
     /**
      * Sends the specified patients.
-     * @param patients Th patients.
+     * @param patients The patients.
      */
     public void send(Iterable<Patient> patients);
 

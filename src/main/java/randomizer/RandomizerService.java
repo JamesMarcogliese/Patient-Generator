@@ -15,9 +15,16 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+/**
+ * Represents a randomizer service.
+ * @see core.IRandomizerService
+ */
 public class RandomizerService {
     private SeedData seedData;
 
+    /**
+     * Initializes a new instance of the RandomizerService class.
+     */
     public RandomizerService() {
 
         try {
@@ -27,15 +34,18 @@ public class RandomizerService {
         }
     }
 
+    /**
+     * Loads the data.
+     * @param filename The filename.
+     * @return Returns the loaded data.
+     * @throws IOException Throws IOException if file cannot be read.
+     */
     private SeedData loadData(String filename) throws IOException {
 
         if (filename == null || Objects.equals(filename, "".trim())){
             throw new IOException("Filename cannot be null.");
         }
 
-        //File file = new File(filename);
-
-        //URL path = this.getClass().getResource("config.properties");
         File file = new PropertiesService().getResourceFile(filename);
 
         SeedData seedData = new SeedData();
@@ -46,7 +56,6 @@ public class RandomizerService {
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             seedData = (SeedData) jaxbUnmarshaller.unmarshal(file);
 
-
         } catch (JAXBException e){
             e.printStackTrace();
         }
@@ -54,6 +63,10 @@ public class RandomizerService {
         return seedData;
     }
 
+    /**
+     * Gets the random patient.
+     * @return Returns a random patient.
+     */
     public Patient getRandomPatient(){
 
         GivenNameGenderPair nameGenderPair = seedData.getGivenNames()

@@ -6,7 +6,16 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 
+/**
+ * Provides a utility for validating messages.
+ */
 public class ValidationUtil {
+
+    /**
+     * Validates a message.
+     * @param options The message to be validated.
+     * @return Returns a list of result details containing validation results.
+     */
     public Iterable<ResultDetail> validateMessage(Demographic options){
 
         ArrayList<ResultDetail> details = new ArrayList<>();

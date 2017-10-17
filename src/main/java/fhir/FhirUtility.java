@@ -309,16 +309,18 @@ public class FhirUtility {
             try {
 
                 HttpEntity response = httpClient.execute(httppost).getEntity();
-                javax.json.JsonReader jsonReader = Json.createReader(response.getContent());
-                javax.json.JsonObject json = jsonReader.readObject();
-                jsonReader.close();
-                System.out.println(json.toString());
+                //javax.json.JsonReader jsonReader = Json.createReader(response.getContent());
+                //javax.json.JsonObject json = jsonReader.readObject();
+                //jsonReader.close();
+                //System.out.println(json.toString());
 
 
                 httpClient.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
+
 
         }
         return results;
