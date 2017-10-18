@@ -8,7 +8,7 @@ import randomizer.utilities.OHIPUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.xml.bind.JAXBContext;
@@ -96,13 +96,11 @@ public class RandomizerService {
                 .nextInt(0, seedData.getStreetNames().size())));
         patient.setCity(seedData.getCities().get(ThreadLocalRandom.current().nextInt(0, seedData.getCities().size())));
         patient.setCountry("Canada");
-        patient.setDateOfBirth(LocalDateTime.of(ThreadLocalRandom.current().nextInt(1930,2014),
+        Calendar cal = Calendar.getInstance();
+        cal.set(ThreadLocalRandom.current().nextInt(1930,2014),
                 ThreadLocalRandom.current().nextInt(1, 11),
-                ThreadLocalRandom.current().nextInt(1, 28),
-                0,
-                0,
-                0,
-                0));
+                ThreadLocalRandom.current().nextInt(1, 28));
+        patient.setDateOfBirth(cal);
         patient.setEmail((firstName + "." + lastName +  ThreadLocalRandom.current().nextInt(0, 1000) + "@example.com").toLowerCase());
         patient.setFirstName(firstName);
         patient.setGender(nameGenderPair.getGenderCode());

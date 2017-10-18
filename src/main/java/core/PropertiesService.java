@@ -1,9 +1,6 @@
 package core;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.Properties;
 
@@ -36,11 +33,43 @@ public class PropertiesService {
 
             properties.load(input);
             value = properties.getProperty(key);
+            input.close();
         } catch (IOException e){
             e.printStackTrace();
         }
 
         return value;
+    }
+
+    /**
+     * Sets a property value from the properties file specified by key.
+     * @param key The property key to set value on.
+     * @param  value The value to be set on the property key.
+     */
+    public void setPropertyValue(String key, String value){
+
+        Properties properties = new Properties();
+        OutputStream output = null;
+        InputStream input = null;
+
+        try{
+            URL path = PropertiesService.class.getClassLoader().getResource("properties/config.properties");
+            File file = new File(path.getFile());
+
+            // Due to the nature of using a text properties file, all existing keys in the file must be retrieved and re-stored.
+
+            input = new FileInputStream(file);
+            properties.load(input);
+            input.close();
+
+            output = new FileOutputStream(file);
+            properties.setProperty(key, value);
+            properties.store(output, null);
+            output.close();
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     /**

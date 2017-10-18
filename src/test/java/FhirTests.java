@@ -7,8 +7,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -59,14 +59,11 @@ class FhirTests {
         options.setAddresses(addresses);
 
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setExact(LocalDateTime.of(
-                ThreadLocalRandom.current().nextInt(1900, 2014),
+        Calendar cal = Calendar.getInstance();
+        cal.set(ThreadLocalRandom.current().nextInt(1900, 2014),
                 ThreadLocalRandom.current().nextInt(1, 12),
-                ThreadLocalRandom.current().nextInt(1, 28),
-                0,
-                0,
-                0,
-                0));
+                ThreadLocalRandom.current().nextInt(1, 28));
+        dateOfBirthOptions.setExact(cal);
         options.setDateOfBirthOptions(dateOfBirthOptions);
 
         options.setGender("F");

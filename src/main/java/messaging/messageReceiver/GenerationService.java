@@ -10,16 +10,18 @@ import messaging.services.IGenerationService;
 import messaging.validation.ValidationUtil;
 import randomizer.RandomizerService;
 
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import java.util.ArrayList;
 
 /**
  * Provides operations to generate patients.
  */
+@WebService(serviceName = "generationService")
 public class GenerationService implements IGenerationService {
     private FhirSenderService fhirSenderService;
     //private HL7v2SenderService hl7v2SenderService;
     //private HL7v3SenderService hl7v3SenderService;
-    //private PersistenceService persistenceService;
     private RandomizerService randomizerService;
 
     /**
@@ -29,17 +31,18 @@ public class GenerationService implements IGenerationService {
         fhirSenderService = new FhirSenderService();
         //hl7v2SenderService = new HL7v2SenderService();
         //hl7v3SenderService = new HL7v3SenderService();
-        //persistenceService = new PersistenceService();
         randomizerService = new RandomizerService();
     }
 
     /**
      * Generates patients using the provided options.
      * @param options The options to use to generate patients.
+     * @param useEndpoint If true, send to http endpoint in properties file, else, return to web service client.
      * @return Returns a GenerationResponse.
      */
+    @WebMethod
     @Override
-    public GenerationResponse generatePatients(Demographic options){
+    public GenerationResponse generatePatientsWithOptions(Demographic options, Boolean useEndpoint){
         GenerationResponse response = new GenerationResponse();
 
         ValidationUtil validationUtil = new ValidationUtil();
@@ -54,13 +57,13 @@ public class GenerationService implements IGenerationService {
 
         if (!response.hasErrors()){
 
-            /*if(persistenceService != null) {
+            if (fhirSenderService != null && useEndpoint) {
 
-                persistenceService.save(options);
-            }*/
-            if (fhirSenderService != null) {
+                fhirSenderService.sendHttp(options);
 
-                fhirSenderService.send(options);
+            } else if (fhirSenderService != null){
+
+                response.addPatient(fhirSenderService.returnSoap(options));
             }
            /* if (hl7v2SenderService != null)
             {
@@ -78,10 +81,12 @@ public class GenerationService implements IGenerationService {
     /**
      * Generates patients using a randomized dataset.
      * @param count The number of patients to generate.
+     * @param useEndpoint If true, send to http endpoint in properties file, else, return to web service client.
      * @return Returns a generation response.
      */
+    @WebMethod
     @Override
-    public GenerationResponse generatePatients(int count){
+    public GenerationResponse generatePatients(int count, Boolean useEndpoint){
         GenerationResponse response = new GenerationResponse();
 
         ArrayList<Patient> patients = new ArrayList<Patient>();
@@ -91,8 +96,14 @@ public class GenerationService implements IGenerationService {
         }
 
         for (Patient currentPatient : patients) {
-            if (fhirSenderService != null) {
-                fhirSenderService.send(currentPatient);
+
+            if (fhirSenderService != null && useEndpoint) {
+
+                fhirSenderService.sendHttp(currentPatient);
+
+            } else if (fhirSenderService != null){
+
+                response.addPatient(fhirSenderService.returnSoap(currentPatient));
             }
            /* if (hl7v2SenderService != null)
             {

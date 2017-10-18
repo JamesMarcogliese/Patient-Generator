@@ -1,14 +1,14 @@
 package core.model.componentModel;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
 
 /**
  * Date of birth options for a patient.
  */
 public class DateOfBirthOptions {
-    private LocalDateTime end;
-    private LocalDateTime exact;
-    private LocalDateTime start;
+    private Calendar end;
+    private Calendar exact;
+    private Calendar start;
 
     /**
      * Initializes a new instance of the DateOfBirthOptions class.
@@ -20,7 +20,7 @@ public class DateOfBirthOptions {
      * Gets the end range for the date of birth.
      * @return end
      */
-    public LocalDateTime getEnd() {
+    public Calendar getEnd() {
         return end;
     }
 
@@ -28,7 +28,7 @@ public class DateOfBirthOptions {
      * Sets the end range for the date of birth.
      * @param end End range for the date of birth.
      */
-    public void setEnd(LocalDateTime end) {
+    public void setEnd(Calendar end) {
         this.end = end;
     }
 
@@ -36,7 +36,7 @@ public class DateOfBirthOptions {
      * Gets the exact date of birth to use for the patient.
      * @return exact
      */
-    public LocalDateTime getExact() {
+    public Calendar getExact() {
         return exact;
     }
 
@@ -44,7 +44,7 @@ public class DateOfBirthOptions {
      * Sets the exact date of birth to use for the patient.
      * @param exact Exact date of birth.
      */
-    public void setExact(LocalDateTime exact) {
+    public void setExact(Calendar exact) {
         this.exact = exact;
     }
 
@@ -52,7 +52,7 @@ public class DateOfBirthOptions {
      * Gets the start range for the date of birth.
      * @return start
      */
-    public LocalDateTime getStart() {
+    public Calendar getStart() {
         return start;
     }
 
@@ -60,7 +60,7 @@ public class DateOfBirthOptions {
      * Sets the start range for the date of birth.
      * @param start Start range for the date of birth.
      */
-    public void setStart(LocalDateTime start) {
+    public void setStart(Calendar start) {
         this.start = start;
     }
 }

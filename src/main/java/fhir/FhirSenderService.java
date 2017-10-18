@@ -5,6 +5,9 @@ import core.IFhirSenderService;
 import core.model.Metadata;
 import core.model.componentModel.Demographic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents a FHIR sender service.
  * @see core.IFhirSenderService
@@ -16,7 +19,7 @@ public class FhirSenderService implements IFhirSenderService {
      * @param options The options.
      */
     @Override
-    public void send(Demographic options) {
+    public void sendHttp(Demographic options) {
 
         FhirUtility fhirUtility = new FhirUtility();
         Patient patient = fhirUtility.generateCandidateRegistry(options);
@@ -28,7 +31,7 @@ public class FhirSenderService implements IFhirSenderService {
      * @param patients The patients.
      */
     @Override
-    public void send(Iterable<core.model.common.Patient> patients) {
+    public void sendHttp(Iterable<core.model.common.Patient> patients) {
 
         FhirUtility fhirUtility = new FhirUtility();
         Metadata metadata = new Metadata();
@@ -49,7 +52,7 @@ public class FhirSenderService implements IFhirSenderService {
      * @param patient The patient.
      */
     @Override
-    public void send(core.model.common.Patient patient) {
+    public void sendHttp(core.model.common.Patient patient) {
 
         FhirUtility fhirUtility = new FhirUtility();
         Metadata metadata = new Metadata();
@@ -63,7 +66,63 @@ public class FhirSenderService implements IFhirSenderService {
         fhirUtility.sendFhirMessages(fhirPatient);
     }
 
-/*    @Override
+    /**
+     * Returns the specified options.
+     * @param options The options.
+     * @return A Fhir patient.
+     */
+    @Override
+    public Patient returnSoap(Demographic options) {
+
+        FhirUtility fhirUtility = new FhirUtility();
+        return fhirUtility.generateCandidateRegistry(options);
+    }
+
+    /**
+     * Returns the specified patients.
+     * @param patients The patients.
+     * @return A Fhir patient list.
+     */
+    @Override
+    public List<Patient> returnSoap(Iterable<core.model.common.Patient> patients) {
+
+        FhirUtility fhirUtility = new FhirUtility();
+        ArrayList<Patient> arr = new ArrayList<>();
+        Metadata metadata = new Metadata();
+        metadata.setAssigningAuthority("0.0.0.0"); //FILL
+        metadata.setReceivingApplication("Endpoint"); //FILL
+        metadata.setReceivingFacility("Endpoint"); //FILL
+        metadata.setSendingApplication("Test");
+        metadata.setSendingFacility("Test");
+
+        for (core.model.common.Patient currentPatient : patients) {
+
+            arr.add(fhirUtility.generateCandidateRegistry(currentPatient, metadata));
+        }
+
+        return arr;
+    }
+
+    /**
+     * Returns the specified patient.
+     * @param patient The patient.
+     * @return A Fhir patient.
+     */
+    @Override
+    public Patient returnSoap(core.model.common.Patient patient) {
+
+        FhirUtility fhirUtility = new FhirUtility();
+        Metadata metadata = new Metadata();
+        metadata.setAssigningAuthority("0.0.0.0"); //FILL
+        metadata.setReceivingApplication("Endpoint"); //FILL
+        metadata.setReceivingFacility("Endpoint"); //FILL
+        metadata.setSendingApplication("Test");
+        metadata.setSendingFacility("Test");
+
+        return fhirUtility.generateCandidateRegistry(patient, metadata);
+    }
+
+    /*    @Override
     public Task sendAsync(Demographic options) {
 
     return null;

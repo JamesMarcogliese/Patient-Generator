@@ -1,6 +1,6 @@
 package core.model.common;
 
-import java.time.LocalDateTime;
+import java.util.Calendar;
 
 /**
  * Represents a patient.
@@ -9,7 +9,7 @@ public class Patient {
     private String addressLine;
     private String city;
     private String country;
-    private LocalDateTime dateOfBirth;
+    private Calendar dateOfBirth;
     private String email;
     private String gender;
     private String firstName;
@@ -80,7 +80,7 @@ public class Patient {
      * Get the date of birth.
      * @return dateOfBirth
      */
-    public LocalDateTime getDateOfBirth() {
+    public Calendar getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -88,7 +88,7 @@ public class Patient {
      * Sets the date of birth.
      * @param dateOfBirth Date of Birth of the patient.
      */
-    public void setDateOfBirth(LocalDateTime dateOfBirth) {
+    public void setDateOfBirth(Calendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

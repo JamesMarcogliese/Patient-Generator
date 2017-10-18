@@ -20,20 +20,26 @@ class PropertiesTests {
     }
 
     @Test
-    void testPropertyRetrieval(){
+    void testGetProperty(){
         propertiesService = new PropertiesService();
 
-        String value = propertiesService.getPropertyValue("seedDataFile");
+        String valueFound = propertiesService.getPropertyValue("seedDataFile");
 
-        assertEquals("xml/seedData.xml", value);
+        assertEquals("xml/seedData.xml", valueFound);
     }
 
-    /*@Test
-    void testResourceFileRetrieval(){
+    @Test
+    void testSetProperty(){
         propertiesService = new PropertiesService();
 
-        File file = propertiesService.getResourceFile("seedDataFile");
+        String randomNumber = String.valueOf((int) Math.floor(Math.random() * 101));
 
-        assertEquals("resources/seedData.xml", value);
-    }*/
+        propertiesService.setPropertyValue("testProperty", "Test" + randomNumber);
+
+        String valueFound = propertiesService.getPropertyValue("testProperty");
+        System.out.print("Test" + randomNumber);
+        System.out.print(valueFound);
+
+        assertEquals("Test" + randomNumber, valueFound);
+    }
 }

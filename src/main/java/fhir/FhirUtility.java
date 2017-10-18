@@ -22,11 +22,7 @@ import org.apache.http.impl.client.HttpClients;
 
 import javax.json.Json;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -80,27 +76,28 @@ public class FhirUtility {
 
             if(options.getDateOfBirthOptions().getExact() != null){
 
-                DateDt date = new DateDt(options.getDateOfBirthOptions().getExact().getYear(),
-                                         options.getDateOfBirthOptions().getExact().getMonthValue(),
-                                         options.getDateOfBirthOptions().getExact().getDayOfMonth());
+                DateDt date = new DateDt(options.getDateOfBirthOptions().getExact().get(Calendar.YEAR),
+                                         options.getDateOfBirthOptions().getExact().get(Calendar.MONTH),
+                                         options.getDateOfBirthOptions().getExact().get(Calendar.DATE));
                 patient.setBirthDate(date);
 
             } else if (options.getDateOfBirthOptions().getStart() != null && options.getDateOfBirthOptions().getEnd() != null){
-                int startYear = options.getDateOfBirthOptions().getStart().getYear();
-                int endYear = options.getDateOfBirthOptions().getEnd().getYear();
+                int startYear = options.getDateOfBirthOptions().getStart().get(Calendar.YEAR);
+                int endYear = options.getDateOfBirthOptions().getEnd().get(Calendar.YEAR);
 
-                int startMonth = options.getDateOfBirthOptions().getStart().getMonthValue();
-                int endMonth = options.getDateOfBirthOptions().getEnd().getMonthValue();
+                int startMonth = options.getDateOfBirthOptions().getStart().get(Calendar.MONTH);
+                int endMonth = options.getDateOfBirthOptions().getEnd().get(Calendar.MONTH);
 
-                int startDay = options.getDateOfBirthOptions().getStart().getDayOfMonth();
-                int endDay = options.getDateOfBirthOptions().getEnd().getDayOfMonth();
+                int startDay = options.getDateOfBirthOptions().getStart().get(Calendar.DATE);
+                int endDay = options.getDateOfBirthOptions().getEnd().get(Calendar.DATE);
 
                 DateDt date = new DateDt(ThreadLocalRandom.current().nextInt(startYear, endYear + 1),
                                          ThreadLocalRandom.current().nextInt(startMonth, endMonth + 1),
                                          ThreadLocalRandom.current().nextInt(startDay, endDay + 1));
                 patient.setBirthDate(date);
             } else {
-                DateDt date = new DateDt(ThreadLocalRandom.current().nextInt(1900, LocalDateTime.now().getYear() + 1),
+                Calendar now = Calendar.getInstance();
+                DateDt date = new DateDt(ThreadLocalRandom.current().nextInt(1900, now.get(Calendar.YEAR) + 1),
                         ThreadLocalRandom.current().nextInt(1, 12 + 1),
                         ThreadLocalRandom.current().nextInt(1, 28 + 1));
                 patient.setBirthDate(date);
@@ -199,9 +196,9 @@ public class FhirUtility {
         address.setUse(AddressUseEnum.HOME);
         fhirPatient.addAddress(address);
 
-        DateDt date = new DateDt(patient.getDateOfBirth().getYear(),
-                                patient.getDateOfBirth().getMonthValue(),
-                                patient.getDateOfBirth().getDayOfYear());
+        DateDt date = new DateDt(patient.getDateOfBirth().get(Calendar.YEAR),
+                                patient.getDateOfBirth().get(Calendar.MONTH),
+                                patient.getDateOfBirth().get(Calendar.DATE));
         fhirPatient.setBirthDate(date);
 
         fhirPatient.setCommunication(new ArrayList<>());
@@ -314,13 +311,10 @@ public class FhirUtility {
                 //jsonReader.close();
                 //System.out.println(json.toString());
 
-
                 httpClient.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
 
         }
         return results;
@@ -331,7 +325,7 @@ public class FhirUtility {
      * @param endpoint The endpoint.
      * @return Returns a string representing the authorization token.
      */
-    public String getAuthorizationToken(FhirEndpoint endpoint){
+    private String getAuthorizationToken(FhirEndpoint endpoint){
         String accessToken = null;
 
         CloseableHttpClient httpClient = HttpClients.createDefault();

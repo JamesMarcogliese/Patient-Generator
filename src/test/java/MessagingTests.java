@@ -6,8 +6,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -57,14 +57,12 @@ class MessagingTests {
         options.setAddresses(addresses);
 
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setExact(LocalDateTime.of(
-                ThreadLocalRandom.current().nextInt(1900, 2014),
-                ThreadLocalRandom.current().nextInt(1, 12),
-                ThreadLocalRandom.current().nextInt(1, 28),
-                0,
-                0,
-                0,
-                0));
+        Calendar cal = Calendar.getInstance();
+        cal.set(
+        ThreadLocalRandom.current().nextInt(1900, 2014),
+        ThreadLocalRandom.current().nextInt(1, 12),
+        ThreadLocalRandom.current().nextInt(1, 28));
+        dateOfBirthOptions.setExact(cal);
         options.setDateOfBirthOptions(dateOfBirthOptions);
 
         options.setGender("M");
@@ -117,11 +115,14 @@ class MessagingTests {
     @Test
     void testDateOfBirthRange(){
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setStart(LocalDateTime.of(1925, 1, 1, 0, 0));
-        dateOfBirthOptions.setEnd(LocalDateTime.of(1990, 12, 31, 0, 0));
+        Calendar cal = Calendar.getInstance();
+        cal.set(1925,1,1);
+        dateOfBirthOptions.setStart(cal);
+        cal.set(1990,12,31);
+        dateOfBirthOptions.setEnd(cal);
         options.setDateOfBirthOptions(dateOfBirthOptions);
 
-        GenerationResponse result = service.generatePatients(options);
+        GenerationResponse result = service.generatePatientsWithOptions(options, Boolean.FALSE);
 
         assertFalse(result.hasErrors());
     }
@@ -129,11 +130,14 @@ class MessagingTests {
     @Test
     void testDateOfBirthRangeNoEnd(){
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setStart(LocalDateTime.of(1925, 1, 1, 0, 0));
-        dateOfBirthOptions.setExact(LocalDateTime.now());
+        Calendar cal = Calendar.getInstance();
+        cal.set(1925, 1, 1);
+        dateOfBirthOptions.setStart(cal);
+        cal = Calendar.getInstance();
+        dateOfBirthOptions.setExact(cal);
         options.setDateOfBirthOptions(dateOfBirthOptions);
 
-        GenerationResponse result = service.generatePatients(options);
+        GenerationResponse result = service.generatePatientsWithOptions(options, Boolean.FALSE);
 
         assertTrue(result.hasErrors());
     }
@@ -141,11 +145,14 @@ class MessagingTests {
     @Test
     void testDateOfBirthRangeNoStart(){
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setEnd(LocalDateTime.of(1990, 12, 31, 0, 0));
-        dateOfBirthOptions.setExact(LocalDateTime.now());
+        Calendar cal = Calendar.getInstance();
+        dateOfBirthOptions.setExact(cal);
+        cal.set(1990, 12, 31);
+        dateOfBirthOptions.setEnd(cal);
+
         options.setDateOfBirthOptions(dateOfBirthOptions);
 
-        GenerationResponse result = service.generatePatients(options);
+        GenerationResponse result = service.generatePatientsWithOptions(options, Boolean.FALSE);
 
         assertTrue(result.hasErrors());
     }
@@ -153,12 +160,16 @@ class MessagingTests {
     @Test
     void testDateOfBirthRangeWithExact(){
         DateOfBirthOptions dateOfBirthOptions = new DateOfBirthOptions();
-        dateOfBirthOptions.setStart(LocalDateTime.of(1925, 1, 1, 0, 0));
-        dateOfBirthOptions.setEnd(LocalDateTime.of(1990, 12, 31, 0, 0));
-        dateOfBirthOptions.setExact(LocalDateTime.now());
+        Calendar cal = Calendar.getInstance();
+        dateOfBirthOptions.setExact(cal);
+        cal.set(1925, 1, 1);
+        dateOfBirthOptions.setStart(cal);
+        cal.set(1990, 12, 31);
+        dateOfBirthOptions.setEnd(cal);
+
         options.setDateOfBirthOptions(dateOfBirthOptions);
 
-        GenerationResponse result = service.generatePatients(options);
+        GenerationResponse result = service.generatePatientsWithOptions(options, Boolean.FALSE);
 
         assertTrue(result.hasErrors());
     }
@@ -167,7 +178,7 @@ class MessagingTests {
     void testEmptyDateOfBirth() {
         options.setDateOfBirthOptions(null);
 
-        GenerationResponse result = service.generatePatients(options);
+        GenerationResponse result = service.generatePatientsWithOptions(options, Boolean.FALSE);
 
         assertFalse(result.hasErrors());
     }
@@ -183,7 +194,7 @@ class MessagingTests {
         metadata.setUseHL7v2(true);
         options.setMetadata(metadata);
 
-        GenerationResponse result = service.generatePatients(options);
+        GenerationResponse result = service.generatePatientsWithOptions(options, Boolean.FALSE);
 
         assertTrue(result.hasErrors());
     }
@@ -199,7 +210,7 @@ class MessagingTests {
         metadata.setUseHL7v2(false);
         options.setMetadata(metadata);
 
-        GenerationResponse result = service.generatePatients(options);
+        GenerationResponse result = service.generatePatientsWithOptions(options, Boolean.FALSE);
 
         assertTrue(result.hasErrors());
     }

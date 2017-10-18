@@ -1,5 +1,7 @@
 package messaging.model;
 
+import ca.uhn.fhir.model.dstu2.resource.Patient;
+
 import java.util.ArrayList;
 
 /**
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 public class GenerationResponse {
     private  ArrayList<String> messages;
     private Boolean hasErrors;
+    private ArrayList<Patient> patients;
 
     /**
      * Initializes a new instance of the GenerationResponse class.
@@ -15,6 +18,7 @@ public class GenerationResponse {
     public GenerationResponse() {
         this.messages = new ArrayList<String>();
         this.hasErrors = false;
+        this.patients = new ArrayList<>();
     }
 
     /**
@@ -47,5 +51,29 @@ public class GenerationResponse {
      */
     public void setHasErrors(Boolean hasErrors) {
         this.hasErrors = hasErrors;
+    }
+
+    /**
+     * Gets the patients list.
+     * @return The patients.
+     */
+    public ArrayList<Patient> getPatients() {
+        return patients;
+    }
+
+    /**
+     * Sets the patients list.
+     * @param patients The patients.
+     */
+    public void setPatients(ArrayList<Patient> patients) {
+        this.patients = patients;
+    }
+
+    /**
+     * Adds a patient to the patient list.
+     * @param patient The patient.
+     */
+    public void addPatient(Patient patient){
+        this.patients.add(patient);
     }
 }
