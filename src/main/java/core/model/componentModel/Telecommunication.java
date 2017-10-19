@@ -1,13 +1,20 @@
 package core.model.componentModel;
 
+import javax.xml.bind.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
 
 /**
  * Represents telecom options for a patient.
  */
+@XmlRootElement(name = "telecommunication")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Telecommunication {
+    @XmlElementWrapper(name = "emailAddresses")
+    @XmlElement(name = "emailAddress")
     private List<String> emailAddresses;
+    @XmlElementWrapper(name = "phoneNumbers")
+    @XmlElement(name = "phoneNumber")
     private List<String> phoneNumbers;
 
     /**

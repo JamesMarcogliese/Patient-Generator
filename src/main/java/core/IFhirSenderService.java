@@ -33,21 +33,21 @@ public interface IFhirSenderService {
      * @param options The options.
      * @return A Fhir patient.
      */
-    public ca.uhn.fhir.model.dstu2.resource.Patient returnSoap(Demographic options);
+    public String returnSoap(Demographic options);
 
     /**
      * Returns the specified patients.
      * @param patients The patients.
      * @return A Fhir patient list.
      */
-    public List<ca.uhn.fhir.model.dstu2.resource.Patient> returnSoap(Iterable<Patient> patients);
+    public List<String> returnSoap(Iterable<Patient> patients);
 
     /**
      * Returns the specified patient.
      * @param patient The patient.
      * @return A Fhir patient.
      */
-    public ca.uhn.fhir.model.dstu2.resource.Patient returnSoap(Patient patient);
+    public String returnSoap(Patient patient);
     //public Task sendAsync(Demographic options);
     //public Task sendAsync(Iterable<Patient> patients);
     //public void sendAsync(Patient patient);

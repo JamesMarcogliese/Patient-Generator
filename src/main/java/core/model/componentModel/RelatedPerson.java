@@ -1,15 +1,31 @@
 package core.model.componentModel;
 
+import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents related person options.
  */
+@XmlRootElement(name = "relatedPerson")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class RelatedPerson {
-    private List<Address> address;
+    @XmlElementWrapper(name = "addresses")
+    @XmlElement(name = "address")
+    private List<Address> addresses;
+    @XmlElementWrapper(name = "names")
+    @XmlElement(name = "name")
     private List<Name> names;
     private String phone;
     private PatientRelationshipType relationship;
+
+    /**
+     * Initializes a new instance of the RelatedPerson class.
+     */
+    public RelatedPerson() {
+        this.names = new ArrayList<>();
+        this.addresses = new ArrayList<>();
+    }
 
     /**
      * Represents a patient relationship type.
@@ -30,7 +46,7 @@ public class RelatedPerson {
      * @return address
      */
     public List<Address> getAddress() {
-        return address;
+        return addresses;
     }
 
     /**
@@ -38,7 +54,7 @@ public class RelatedPerson {
      * @param address The address of the related person.
      */
     public void setAddress(List<Address> address) {
-        this.address = address;
+        this.addresses = address;
     }
 
     /**

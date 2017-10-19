@@ -352,4 +352,11 @@ public class FhirUtility {
 
         return accessToken;
     }
+
+    public String encodePatientToString(Patient patient){
+
+        FhirContext ctx = FhirContext.forDstu2();
+
+        return ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(patient);
+    }
 }

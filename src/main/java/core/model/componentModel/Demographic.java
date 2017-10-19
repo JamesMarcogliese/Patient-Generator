@@ -2,21 +2,32 @@ package core.model.componentModel;
 
 import core.model.Metadata;
 
+import javax.xml.bind.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
 
 /**
  * Represents demographic options for a patient.
  */
+@XmlRootElement(name = "demographic")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Demographic {
-    private ArrayList<Address> addresses;
+    @XmlElementWrapper(name = "addresses")
+    @XmlElement(name = "address")
+    private List<Address> addresses;
     private DateOfBirthOptions dateOfBirthOptions;
     private String gender;
     private Metadata metadata;
-    private ArrayList<Name> names;
-    private ArrayList<AlternateIdentifier> otherIdentifiers;
+    @XmlElementWrapper(name = "names")
+    @XmlElement(name = "name")
+    private List<Name> names;
+    @XmlElementWrapper(name = "otherIdentifiers")
+    @XmlElement(name = "otherIdentifier")
+    private List<AlternateIdentifier> otherIdentifiers;
     private String personIdentifier;
-    private ArrayList<RelatedPerson> relatedPersons;
+    @XmlElementWrapper(name = "relatedPersons")
+    @XmlElement(name = "relatedPerson")
+    private List<RelatedPerson> relatedPersons;
     private Telecommunication telecomOptions;
 
     /**
@@ -35,7 +46,7 @@ public class Demographic {
      * Gets the address options for a patient.
      * @return addresses
      */
-    public ArrayList<Address> getAddresses() {
+    public List<Address> getAddresses() {
         return addresses;
     }
 
@@ -43,7 +54,7 @@ public class Demographic {
      * Sets the address options for a patient.
      * @param addresses Address options for a patient.
      */
-    public void setAddresses(ArrayList<Address> addresses) {
+    public void setAddresses(List<Address> addresses) {
         this.addresses = addresses;
     }
 
@@ -107,7 +118,7 @@ public class Demographic {
      * Sets the name options for a patient.
      * @param names Names of a patient.
      */
-    public void setNames(ArrayList<Name> names) {
+    public void setNames(List<Name> names) {
         this.names = names;
     }
 
@@ -155,7 +166,7 @@ public class Demographic {
      * Sets the related persons options for a patient.
      * @param relatedPersons Related Options for a patient.
      */
-    public void setRelatedPersons(ArrayList<RelatedPerson> relatedPersons) {
+    public void setRelatedPersons(List<RelatedPerson> relatedPersons) {
         this.relatedPersons = relatedPersons;
     }
 

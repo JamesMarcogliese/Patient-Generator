@@ -1,16 +1,23 @@
 package core.model.componentModel;
 
+import javax.xml.bind.annotation.*;
 import java.util.List;
 import java.util.ArrayList;
 
 /**
  * Represents name options for a patient.
  */
+@XmlRootElement(name = "name")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Name {
     private String firstName;
     private String lastName;
+    @XmlElementWrapper(name = "middleNames")
+    @XmlElement(name = "middleName")
     private List<String> middleNames;
     private String prefix;
+    @XmlElementWrapper(name = "suffixes")
+    @XmlElement(name = "suffix")
     private List<String> suffixes;
 
     /**

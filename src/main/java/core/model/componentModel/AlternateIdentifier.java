@@ -1,8 +1,14 @@
 package core.model.componentModel;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Represents assigning authority options.
  */
+@XmlRootElement(name = "alternateIdentifier")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class AlternateIdentifier {
     private String type;
     private String value;

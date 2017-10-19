@@ -72,10 +72,11 @@ public class FhirSenderService implements IFhirSenderService {
      * @return A Fhir patient.
      */
     @Override
-    public Patient returnSoap(Demographic options) {
+    public String returnSoap(Demographic options) {
 
         FhirUtility fhirUtility = new FhirUtility();
-        return fhirUtility.generateCandidateRegistry(options);
+        Patient patient = fhirUtility.generateCandidateRegistry(options);
+        return fhirUtility.encodePatientToString(patient);
     }
 
     /**
@@ -84,10 +85,10 @@ public class FhirSenderService implements IFhirSenderService {
      * @return A Fhir patient list.
      */
     @Override
-    public List<Patient> returnSoap(Iterable<core.model.common.Patient> patients) {
+    public List<String> returnSoap(Iterable<core.model.common.Patient> patients) {
 
         FhirUtility fhirUtility = new FhirUtility();
-        ArrayList<Patient> arr = new ArrayList<>();
+        ArrayList<String> arr = new ArrayList<>();
         Metadata metadata = new Metadata();
         metadata.setAssigningAuthority("0.0.0.0"); //FILL
         metadata.setReceivingApplication("Endpoint"); //FILL
@@ -97,7 +98,8 @@ public class FhirSenderService implements IFhirSenderService {
 
         for (core.model.common.Patient currentPatient : patients) {
 
-            arr.add(fhirUtility.generateCandidateRegistry(currentPatient, metadata));
+            Patient patient = fhirUtility.generateCandidateRegistry(currentPatient, metadata);
+            arr.add(fhirUtility.encodePatientToString(patient));
         }
 
         return arr;
@@ -109,7 +111,7 @@ public class FhirSenderService implements IFhirSenderService {
      * @return A Fhir patient.
      */
     @Override
-    public Patient returnSoap(core.model.common.Patient patient) {
+    public String returnSoap(core.model.common.Patient patient) {
 
         FhirUtility fhirUtility = new FhirUtility();
         Metadata metadata = new Metadata();
@@ -119,7 +121,9 @@ public class FhirSenderService implements IFhirSenderService {
         metadata.setSendingApplication("Test");
         metadata.setSendingFacility("Test");
 
-        return fhirUtility.generateCandidateRegistry(patient, metadata);
+        Patient patientResource = fhirUtility.generateCandidateRegistry(patient, metadata);
+
+        return fhirUtility.encodePatientToString(patientResource);
     }
 
     /*    @Override

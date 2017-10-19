@@ -2,15 +2,22 @@ package messaging.model;
 
 import ca.uhn.fhir.model.dstu2.resource.Patient;
 
+import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
 
 /**
  * Represents a generation response.
  */
+@XmlRootElement(name = "generationResponse")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class GenerationResponse {
-    private  ArrayList<String> messages;
+    @XmlElementWrapper(name = "messages")
+    @XmlElement(name = "message")
+    private ArrayList<String> messages;
     private Boolean hasErrors;
-    private ArrayList<Patient> patients;
+    @XmlElementWrapper(name = "patients")
+    @XmlElement(name = "patient")
+    private ArrayList<String> patients;
 
     /**
      * Initializes a new instance of the GenerationResponse class.
@@ -57,7 +64,7 @@ public class GenerationResponse {
      * Gets the patients list.
      * @return The patients.
      */
-    public ArrayList<Patient> getPatients() {
+    public ArrayList<String> getPatients() {
         return patients;
     }
 
@@ -65,7 +72,7 @@ public class GenerationResponse {
      * Sets the patients list.
      * @param patients The patients.
      */
-    public void setPatients(ArrayList<Patient> patients) {
+    public void setPatients(ArrayList<String> patients) {
         this.patients = patients;
     }
 
@@ -73,7 +80,7 @@ public class GenerationResponse {
      * Adds a patient to the patient list.
      * @param patient The patient.
      */
-    public void addPatient(Patient patient){
+    public void addPatient(String patient){
         this.patients.add(patient);
     }
 }

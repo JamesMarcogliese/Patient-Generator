@@ -1,8 +1,14 @@
 package core.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * Represents metadata about patient registration.
  */
+@XmlRootElement(name = "metadata")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Metadata {
     private String assigningAuthority;
     private String receivingApplication;

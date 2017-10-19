@@ -1,10 +1,15 @@
 package core.model.componentModel;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Calendar;
 
 /**
  * Date of birth options for a patient.
  */
+@XmlRootElement(name = "dateOfBirthOptions")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DateOfBirthOptions {
     private Calendar end;
     private Calendar exact;
