@@ -16,7 +16,7 @@ public interface IGenerationService {
     GenerationResponse generatePatientsWithOptions(Demographic options, Boolean useEndpoint);
 
     /**
-     * Generates patients using a randomized dataset.
+     * Generates patients using a randomized data set.
      * @param count The number of patients to generate.
      * @param useEndpoint If true, send to http endpoint in properties file, else, return to web service client.
      * @return Returns a GenerationResponse.

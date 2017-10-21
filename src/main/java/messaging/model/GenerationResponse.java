@@ -23,7 +23,7 @@ public class GenerationResponse {
      * Initializes a new instance of the GenerationResponse class.
      */
     public GenerationResponse() {
-        this.messages = new ArrayList<String>();
+        this.messages = new ArrayList<>();
         this.hasErrors = false;
         this.patients = new ArrayList<>();
     }

@@ -17,5 +17,16 @@
     <servlet-mapping>
         <servlet-name>WSServlet</servlet-name>
         <url-pattern>/services/*</url-pattern>
-    </servlet-mapping>-->
+    </servlet-mapping>
+-->
+    <servlet>
+        <servlet-name>PatientGeneratorServlet</servlet-name>
+        <servlet-class>client.PatientGeneratorClient</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PatientGeneratorServlet</servlet-name>
+        <url-pattern>/GeneratePatients.do</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
