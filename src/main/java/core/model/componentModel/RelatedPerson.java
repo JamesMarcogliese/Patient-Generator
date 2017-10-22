@@ -7,14 +7,9 @@ import java.util.List;
 /**
  * Represents related person options.
  */
-@XmlRootElement(name = "relatedPerson")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class RelatedPerson {
-    @XmlElementWrapper(name = "addresses")
-    @XmlElement(name = "address")
     private List<Address> addresses;
-    @XmlElementWrapper(name = "names")
-    @XmlElement(name = "name")
     private List<Name> names;
     private String phone;
     private PatientRelationshipType relationship;

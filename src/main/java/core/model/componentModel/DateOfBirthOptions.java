@@ -8,7 +8,6 @@ import java.util.Calendar;
 /**
  * Date of birth options for a patient.
  */
-@XmlRootElement(name = "dateOfBirthOptions")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class DateOfBirthOptions {
     private Calendar end;

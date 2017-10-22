@@ -58,7 +58,7 @@ public class ValidationUtil {
                     details.add(new MandatoryElementMissingResultDetail(ResultDetailType.Error, "SendingFacility cannot be null or empty."));
                 }
 
-            } else {
+            } else if (options.getMetadata().useFhir() == null || options.getMetadata().useFhir() == false) {
                 details.add(new MandatoryElementMissingResultDetail(ResultDetailType.Error,  "Must specify FHIR, HL7v2, or HL7v3"));
             }
 

@@ -9,24 +9,15 @@ import java.util.ArrayList;
 /**
  * Represents demographic options for a patient.
  */
-@XmlRootElement(name = "demographic")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Demographic {
-    @XmlElementWrapper(name = "addresses")
-    @XmlElement(name = "address")
     private List<Address> addresses;
     private DateOfBirthOptions dateOfBirthOptions;
     private String gender;
     private Metadata metadata;
-    @XmlElementWrapper(name = "names")
-    @XmlElement(name = "name")
     private List<Name> names;
-    @XmlElementWrapper(name = "otherIdentifiers")
-    @XmlElement(name = "otherIdentifier")
     private List<AlternateIdentifier> otherIdentifiers;
     private String personIdentifier;
-    @XmlElementWrapper(name = "relatedPersons")
-    @XmlElement(name = "relatedPerson")
     private List<RelatedPerson> relatedPersons;
     private Telecommunication telecomOptions;
 

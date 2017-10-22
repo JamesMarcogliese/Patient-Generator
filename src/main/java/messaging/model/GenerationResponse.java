@@ -8,15 +8,10 @@ import java.util.ArrayList;
 /**
  * Represents a generation response.
  */
-@XmlRootElement(name = "generationResponse")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class GenerationResponse {
-    @XmlElementWrapper(name = "messages")
-    @XmlElement(name = "message")
     private ArrayList<String> messages;
     private Boolean hasErrors;
-    @XmlElementWrapper(name = "patients")
-    @XmlElement(name = "patient")
     private ArrayList<String> patients;
 
     /**
