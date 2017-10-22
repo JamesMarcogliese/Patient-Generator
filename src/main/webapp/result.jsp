@@ -1,16 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Patient Generator Demo</title>
-    <link rel="stylesheet" type="text/css" href="view.css" media="all">
-    <script type="text/javascript" src="view.js"></script>
-    <script>
-        function goBack() {
-            window.history.back()
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="resources/css/view.css" media="all">
+    <script type="text/javascript" src="resources/js/view.js"></script>
 </head>
 <body id="main_body" >
 
@@ -34,8 +28,8 @@
 
             <li class="buttons">
                 <input type="hidden" name="form_id" value="55162" />
+                <a href="index.jsp">Go Back</a>
 
-                <button id="return" class="button_text" onclick="goBack()">Go Back</button>
             </li>
         </ul>
     </form>

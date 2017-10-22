@@ -58,43 +58,43 @@
 		</li>		<li id="li_3" >
 		<label class="description" for="element_3" id="element_3_1">Number of Patients </label>
 		<div>
-			<input id="element_3" name="element_3" class="element text medium" type="number" min="1" max="10" value="1"/>
+			<input id="element_3" name="element_3" class="element text medium" type="number" min="1" max="10" value="1" required />
 		</div>
 		</li>		<li id="li_2" >
 		<label class="description" for="element_2" id="element_2_3">Name </label>
 		<span>
-			<input id="element_2_1" name= "element_2_1" class="element text" maxlength="255" size="8" value=""/>
+			<input id="element_2_1" name= "element_2_1" class="element text" maxlength="255" size="8" value="" required />
 			<label id="element_2_4">First</label>
 		</span>
 		<span>
-			<input id="element_2_2" name= "element_2_2" class="element text" maxlength="255" size="14" value=""/>
+			<input id="element_2_2" name= "element_2_2" class="element text" maxlength="255" size="14" value="" required />
 			<label id="element_2_5">Last</label>
 		</span> 
 		</li>		<li id="li_1" >
 		<label class="description" for="element_1" id="element_1_7">Address </label>
 		
 		<div>
-			<input id="element_1_1" name="element_1_1" class="element text large" value="" type="text">
+			<input id="element_1_1" name="element_1_1" class="element text large" value="" type="text" required >
 			<label for="element_1_1" id="element_1_8">Street Address</label>
 		</div>
 	
 		<div class="left">
-			<input id="element_1_3" name="element_1_3" class="element text medium" value="" type="text">
+			<input id="element_1_3" name="element_1_3" class="element text medium" value="" type="text" required >
 			<label for="element_1_3" id="element_1_9">City</label>
 		</div>
 	
 		<div class="right">
-			<input id="element_1_4" name="element_1_4" class="element text medium" value="" type="text">
+			<input id="element_1_4" name="element_1_4" class="element text medium" value="" type="text" required >
 			<label for="element_1_4" id="element_1_10">State / Province / Region</label>
 		</div>
 	
 		<div class="left">
-			<input id="element_1_5" name="element_1_5" class="element text medium" maxlength="15" value="" type="text">
+			<input id="element_1_5" name="element_1_5" class="element text medium" maxlength="15" value="" type="text" required >
 			<label for="element_1_5" id="element_1_11">Postal / Zip Code</label>
 		</div>
 	
 		<div class="right">
-			<select class="element select medium" id="element_1_6" name="element_1_6"> 
+			<select class="element select medium" id="element_1_6" name="element_1_6" required >
 			<option value="" selected="selected"></option>
 <option value="Afghanistan" >Afghanistan</option>
 <option value="Albania" >Albania</option>
@@ -298,7 +298,7 @@
 		</li>		<li id="li_9" >
 		<label class="description" for="element_9" id="element_9_1">Gender </label>
 		<div>
-		<select class="element select medium" id="element_9" name="element_9"> 
+		<select class="element select medium" id="element_9" name="element_9" required >
 			<option value="" selected="selected"></option>
 <option value="1" >Male</option>
 <option value="2" >Female</option>
@@ -309,15 +309,15 @@
 		</li>		<li id="li_4" >
 		<label class="description" for="element_4" id="element_4_4">Date of Birth Range Start </label>
 		<span>
-			<input id="element_4_1" name="element_4_1" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<input id="element_4_1" name="element_4_1" class="element text" size="2" maxlength="2" value="" type="text" required > /
 			<label for="element_4_1" id="element_4_5">DD</label>
 		</span>
 		<span>
-			<input id="element_4_2" name="element_4_2" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<input id="element_4_2" name="element_4_2" class="element text" size="2" maxlength="2" value="" type="text" required > /
 			<label for="element_4_2" id="element_4_6">MM</label>
 		</span>
 		<span>
-	 		<input id="element_4_3" name="element_4_3" class="element text" size="4" maxlength="4" value="" type="text">
+	 		<input id="element_4_3" name="element_4_3" class="element text" size="4" maxlength="4" value="" type="text" required >
 			<label for="element_4_3" id="element_4_7">YYYY</label>
 		</span>
 	
@@ -338,15 +338,15 @@
 		</li>		<li id="li_5" >
 		<label class="description" for="element_5" id="element_5_4">Date of Birth Range End </label>
 		<span>
-			<input id="element_5_1" name="element_5_1" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<input id="element_5_1" name="element_5_1" class="element text" size="2" maxlength="2" value="" type="text" required > /
 			<label for="element_5_1" id="element_5_5">MM</label>
 		</span>
 		<span>
-			<input id="element_5_2" name="element_5_2" class="element text" size="2" maxlength="2" value="" type="text"> /
+			<input id="element_5_2" name="element_5_2" class="element text" size="2" maxlength="2" value="" type="text" required > /
 			<label for="element_5_2" id="element_5_6">DD</label>
 		</span>
 		<span>
-	 		<input id="element_5_3" name="element_5_3" class="element text" size="4" maxlength="4" value="" type="text">
+	 		<input id="element_5_3" name="element_5_3" class="element text" size="4" maxlength="4" value="" type="text" required >
 			<label for="element_5_3" id="element_5_7">YYYY</label>
 		</span>
 	
@@ -367,20 +367,20 @@
 		</li>		<li id="li_6" >
 		<label class="description" for="element_6" id="element_6_1">Email </label>
 		<div>
-			<input id="element_6" name="element_6" class="element text medium" type="text" maxlength="255" value=""/> 
+			<input id="element_6" name="element_6" class="element text medium" type="text" maxlength="255" value="" required />
 		</div> 
 		</li>		<li id="li_7" >
 		<label class="description" for="element_7" id="element_7_4">Phone </label>
 		<span>
-			<input id="element_7_1" name="element_7_1" class="element text" size="3" maxlength="3" value="" type="text"> -
+			<input id="element_7_1" name="element_7_1" class="element text" size="3" maxlength="3" value="" type="text" required > -
 			<label for="element_7_1" id="element_7_5">(###)</label>
 		</span>
 		<span>
-			<input id="element_7_2" name="element_7_2" class="element text" size="3" maxlength="3" value="" type="text"> -
+			<input id="element_7_2" name="element_7_2" class="element text" size="3" maxlength="3" value="" type="text" required > -
 			<label for="element_7_2" id="element_7_6">###</label>
 		</span>
 		<span>
-	 		<input id="element_7_3" name="element_7_3" class="element text" size="4" maxlength="4" value="" type="text">
+	 		<input id="element_7_3" name="element_7_3" class="element text" size="4" maxlength="4" value="" type="text" required >
 			<label for="element_7_3" id="element_7_7">####</label>
 		</span>
 		 
