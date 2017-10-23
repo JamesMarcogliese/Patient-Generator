@@ -1,7 +1,7 @@
 # Patient-Generator
 
 Supports the creation of randomized patient records using FHIR.
-Inspired by the[Mohawk College MEDIC C# Patient Generator.](https://github.com/MohawkMEDIC/patient-generator)
+Inspired by the [Mohawk College MEDIC C# Patient Generator.](https://github.com/MohawkMEDIC/patient-generator)
 
 Project consists of:
 1. JavaEE Web Service
