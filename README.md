@@ -26,4 +26,7 @@ How to start the Patient-Generator application
 1. Copy warfile from `target` folder to servlet container. (i.e. Tomcat)
 1. To check that your application is running enter url `http://localhost:8080`
 
-
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/8539492/31871701-4fdb398a-b784-11e7-9a03-c3c3a627440a.PNG"/>
+ <img src="https://user-images.githubusercontent.com/8539492/31871702-52e49356-b784-11e7-9a0b-1aecd6902dba.PNG"/>
+</p>
