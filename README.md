@@ -8,16 +8,16 @@ Project consists of:
 1. Java Web Client for demonstrating the Web Service.
 
 Web Service allows creation of multiple patient records generated from a random data set, as well as from provided 
-patient demographic options. 
-
-Records can be returned via SOAP to a web or standalone application, or to an http endpoint that can be specified in 
-the `config.properties` file. Then `useEndpoint` flag when calling the generator should be set to `true` when an http 
-endpoint is preferred. All records are returned in XML format in FHIR DSTU2 specification. 
+patient demographic options. Web Service endpoint can be accessed via `http://localhost:8080/patientgenerator-0.1/generationService?wsdl`.
 
 If a local application needs to be created to access the patient-generation webservice, generated class files from the 
 WSDL can be found in `src/main/java/client/classes`.
 
-Source file documentation can be found in the `docs` folder.
+Records can be returned to the caller via SOAP, or to an alternate http endpoint that can be specified in 
+the `config.properties` file. Then `useEndpoint` flag when calling the generator should be set to `true` when an http 
+endpoint is preferred. All records are returned in XML format in FHIR DSTU2 specification. 
+
+Javadoc documentation can be found in the `docs` folder.
 
 How to start the Patient-Generator application
 ---
